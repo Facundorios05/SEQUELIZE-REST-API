@@ -6,7 +6,7 @@ import { projects } from './projects.js';
 
 
 //Se crea la tabla de usuarios
-export const users = sequelize.define('usuarios', {
+export const user = sequelize.define('usuarios', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -22,7 +22,7 @@ export const users = sequelize.define('usuarios', {
         unique: true
     },
     password: {
-        type: DataTypes.STRING, 
+        type: DataTypes.STRING,
         allowNull: false
     }
 }, {
@@ -31,12 +31,12 @@ export const users = sequelize.define('usuarios', {
 
 //Se crea la relación de uno (Usuarios) a Muchos (Proyectos)
 
-users.hasMany(projects, {
+user.hasMany(projects, {
     foreignKey: 'project_id',
     sourceKey: 'id'
 })
 
-projects.belongsTo(users, {
+projects.belongsTo(user, {
     foreignKey: 'project_id',
     targetId: 'id'
 })

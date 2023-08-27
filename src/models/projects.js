@@ -27,7 +27,7 @@ export const projects = sequelize.define('proyectos', {
 
 //Se crea la relación de Uno (Poryecto) a Muchos (Tareas)
 projects.hasMany(tasks, {
-    foreignKey:'projects_id',
+    foreignKey: 'projects_id',
     sourceKey: 'id'
 })
 
