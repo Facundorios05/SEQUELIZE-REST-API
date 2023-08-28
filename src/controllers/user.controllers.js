@@ -1,10 +1,15 @@
-import { user } from '../models/user.js'; //Se importa el modelo de base de datos para poder hacer consultas.
+//Se importa el modelo de base de datos para poder hacer consultas.
+import { user } from '../models/user.js';
+
 
 //Obtener todos los usuarios.
-export const getUser = (req, res) => {
+export const getUser = async (req, res) => {
+    const users = await user.findAll();
     res.send('Getting all users..')
+    res.json(users)
 }
 
+ 
 //Crear usuario.
 export const createUser = async (req, res) => {
     const { username, email, password } = req.body;
@@ -14,6 +19,7 @@ export const createUser = async (req, res) => {
         email: email,
         password: password
     })
-    console.log(newUser)
     res.send('Creating user..')
+    res.json(newUser)
+
 }
