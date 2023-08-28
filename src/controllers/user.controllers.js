@@ -3,23 +3,75 @@ import { user } from '../models/user.js';
 
 
 //Obtener todos los usuarios.
-export const getUser = async (req, res) => {
-    const users = await user.findAll();
-    res.send('Getting all users..')
-    res.json(users)
+export const getAllUsers = async (req, res) => {
+    try {
+        const users = await user.findAll();
+        res.json(users)
+    } catch (error) {
+        return res.status(500).json({ message: error.message })
+    }
+
 }
 
- 
+//Obtener un usuario por ID.
+export const getUser = async (req, res) => {
+    const  { id } = req.params
+    try {
+        const userForId = await user.findOne({
+            where: {
+                id:id
+            }
+        })
+        res.json(userForId)
+    } catch (error) {
+        return res.status(500).json({ message: error.message })
+    }
+}
+
 //Crear usuario.
 export const createUser = async (req, res) => {
     const { username, email, password } = req.body;
+    try {
+        const newUser = await user.create({
+            username: username,
+            email: email,
+            password: password
+        })
+        res.json(newUser)
+    } catch (error) {
+        return res.status(500).json({ message: error.message })
+    }
+}
 
-    const newUser = await user.create({
-        username: username,
-        email: email,
-        password: password
-    })
-    res.send('Creating user..')
-    res.json(newUser)
+//Actualizar un usuario.
+export const updateUser = async (req, res) => {
 
+    try {
+        const { id } = req.params;
+        const { username, email, password } = req.body;
+
+        const updateUser =  await user.findByPk(id)
+        console.log(updateUser)
+        await updateUser.update({ username, password, email });
+
+        res.json(updateUser)
+
+    } catch (error) {
+        return res.status(500).json({ message: error.message })    
+    }
+}
+
+//Eliminar un usuario.
+export const deleteUser = async (req, res) => {
+    try {
+        const { id } = req.params;
+        await user.destroy({
+            where: {
+                id,
+            },
+        })
+        res.sendStatus(204)
+    } catch (error) {
+        return res.status(500).json({ message: error.message })
+    }
 }
