@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize'; //Se importan los tipos de datos que sopo
 import { sequelize } from '../database/database.js'; //Se importa la conexión a la base de datos
 
 //Se importa tabla de "proyectos" para hacer la relación
-import { projects } from './projects.js';
+
 
 
 //Se crea la tabla de usuarios
@@ -31,12 +31,3 @@ export const user = sequelize.define('usuarios', {
 
 //Se crea la relación de uno (Usuarios) a Muchos (Proyectos)
 
-user.hasMany(projects, {
-    foreignKey: 'userId',
-    sourceKey: 'id'
-})
-
-projects.belongsTo(user, {
-    foreignKey: 'userId',
-    targetId: 'id'
-})

@@ -15,11 +15,11 @@ export const getAllUsers = async (req, res) => {
 
 //Obtener un usuario por ID.
 export const getUser = async (req, res) => {
-    const  { id } = req.params
+    const { id } = req.params
     try {
         const userForId = await user.findOne({
             where: {
-                id:id
+                id: id
             }
         })
         res.json(userForId)
@@ -50,24 +50,28 @@ export const updateUser = async (req, res) => {
         const { id } = req.params;
         const { username, email, password } = req.body;
 
-        const updateUser =  await user.findByPk(id)
-        console.log(updateUser)
+        const updateUser = await user.findByPk(id)
+
+        if (!updateUser) {
+            return res.status(400).json({ message: "No hay usuario que actualizar." })
+        }
+
         await updateUser.update({ username, password, email });
 
         res.json(updateUser)
 
     } catch (error) {
-        return res.status(500).json({ message: error.message })    
+        return res.status(500).json({ message: error.message })
     }
 }
 
 //Eliminar un usuario.
-export const deleteUser = async (req, res) => {
+export const deleteUser = async (req, res) => { 
     try {
         const { id } = req.params;
         await user.destroy({
             where: {
-                id,
+                id:id
             },
         })
         res.sendStatus(204)
@@ -75,3 +79,4 @@ export const deleteUser = async (req, res) => {
         return res.status(500).json({ message: error.message })
     }
 }
+

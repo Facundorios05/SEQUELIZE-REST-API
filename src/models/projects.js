@@ -3,6 +3,7 @@ import { sequelize } from '../database/database.js'; //Se importa la conexión a
 
 //Se importa el modelo de tareas para hacer la realción
 import { tasks } from './tasks.js';
+import { user } from './user.js'
 
 //se crea la tabla de proyectos
 export const projects = sequelize.define('proyectos', {
@@ -20,9 +21,27 @@ export const projects = sequelize.define('proyectos', {
     done: {
         type: DataTypes.BOOLEAN,
         defaultValue: false
+    },
+    user_Id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: user,
+            key: 'id'
+        }
     }
 }, {
     timestamps: false
+})
+
+user.hasMany(projects, {
+    foreignKey: 'user_Id',
+    sourceKey: 'id'
+})
+
+projects.belongsTo(user, {
+    foreignKey: 'user_Id',
+    targetId: 'id'
 })
 
 //Se crea la relación de Uno (Poryecto) a Muchos (Tareas)

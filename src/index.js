@@ -4,6 +4,9 @@ import { sequelize } from './database/database.js'
 
 
 //Se importan las modelos 
+import { user } from './models/user.js';
+import { projects } from './models/projects.js';
+import { tasks } from './models/tasks.js';
 
 async function main() {
     try {
