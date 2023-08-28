@@ -2,6 +2,9 @@
 import app from './app.js'
 import { sequelize } from './database/database.js'
 
+
+//Se importan las modelos 
+
 async function main() {
     try {
         //Crear las tablas si no existen, la caracteristica force lo que hace es que en caso de existir las tablas que se estan requiriendo, las borre y las cree de nuevo. 

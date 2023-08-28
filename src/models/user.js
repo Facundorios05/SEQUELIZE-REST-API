@@ -32,11 +32,11 @@ export const user = sequelize.define('usuarios', {
 //Se crea la relación de uno (Usuarios) a Muchos (Proyectos)
 
 user.hasMany(projects, {
-    foreignKey: 'project_id',
+    foreignKey: 'userId',
     sourceKey: 'id'
 })
 
 projects.belongsTo(user, {
-    foreignKey: 'project_id',
+    foreignKey: 'userId',
     targetId: 'id'
 })
