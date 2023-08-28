@@ -1,5 +1,6 @@
 import { DataTypes } from 'sequelize'; //Se importan los tipos de datos que soporta Sequelize
 import { sequelize } from '../database/database.js'; //Se importa la conexión a la base de datos
+import { projects } from './projects.js';
 
 //Se crea la tabla de tareas
 export const tasks = sequelize.define('tareas', {

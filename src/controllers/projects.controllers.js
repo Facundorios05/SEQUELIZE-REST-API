@@ -30,11 +30,11 @@ export const getProject = async (req, res) => {
 //Crear un nuevo proyecto
 export const createProject = async (req, res) => {
     try {
-        const { name, description, user_Id } = req.body;
+        const { name, description, user_id } = req.body;
         const newProject = await projects.create({
             name: name,
             description: description,
-            user_Id: user_Id
+            user_id: user_id
         })
         res.json(newProject);
     } catch (error) {
@@ -72,7 +72,7 @@ export const deleteProject = async (req, res) => {
             }
         })
     } catch (error) {
-
+        return res.status(500).json({ message: error.message })
     }
 }
 

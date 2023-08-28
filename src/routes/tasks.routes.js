@@ -2,8 +2,13 @@
 import { Router } from 'express';
 const router = Router();
 
-router.get('/tasks/getAll')
-router.post('/tasks/create')
-router.put('/tasks/update')
-router.delete('/tasks/delete')
-router.get('/tasks/getById')
+//Se importan los controladores para las rutas
+import { getAllTasks, createTask, updateTask, deleteTask, getTask } from '../controllers/tasks.controllers.js'
+
+router.get('/tasks', getAllTasks)
+router.post('/tasks', createTask)
+router.put('/tasks', updateTask)
+router.delete('/tasks', deleteTask )
+router.get('/tasks', getTask)
+
+export default router;

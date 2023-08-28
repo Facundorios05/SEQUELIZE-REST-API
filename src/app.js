@@ -4,7 +4,8 @@ import "dotenv/config";
 
 //Se importan rutas
 import userRoutes from './routes/user.routes.js';
-import projectsRoutes from './routes/projects.routes.js'
+import tasksRoutes from './routes/tasks.routes.js';
+import projectsRoutes from './routes/projects.routes.js';
 
 const app = express()
 
@@ -18,6 +19,7 @@ app.use(express.json());
 
 //Se importan las rutas
 app.use(userRoutes);
+app.use(tasksRoutes);
 app.use(projectsRoutes);
 
 

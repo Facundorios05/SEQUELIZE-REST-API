@@ -1,6 +1,7 @@
 //Se importa el modelo de base de datos para poder hacer consultas.
 import { user } from '../models/user.js';
-
+import { projects } from '../models/projects.js';
+import { tasks } from '../models/tasks.js';
 
 //Obtener todos los usuarios.
 export const getAllUsers = async (req, res) => {
@@ -66,12 +67,12 @@ export const updateUser = async (req, res) => {
 }
 
 //Eliminar un usuario.
-export const deleteUser = async (req, res) => { 
+export const deleteUser = async (req, res) => {
     try {
         const { id } = req.params;
         await user.destroy({
             where: {
-                id:id
+                id: id
             },
         })
         res.sendStatus(204)
@@ -80,3 +81,29 @@ export const deleteUser = async (req, res) => {
     }
 }
 
+export const userInfo = async (req, res) => {
+    const { id } = req.params;
+   
+    const infoUser = user.findOne({
+        where: {
+            id: id
+        }
+    })
+    
+    const infoProjects = projects.findAll({
+        where: {
+            user_id: id
+        },
+        include: [{
+            model: tasks, required: true
+        }]
+    })
+
+    const response = {
+        infoUser,
+        infoProjects, 
+        infoTasks
+    }
+
+    res.json(response)
+}
