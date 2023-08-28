@@ -83,14 +83,12 @@ export const deleteUser = async (req, res) => {
 
 export const userInfo = async (req, res) => {
     const { id } = req.params;
-   
-    const infoUser = user.findOne({
+    const infoUser = await user.findOne({
         where: {
             id: id
         }
     })
-    
-    const infoProjects = projects.findAll({
+    const infoProjects = await projects.findAll({
         where: {
             user_id: id
         },
@@ -98,12 +96,9 @@ export const userInfo = async (req, res) => {
             model: tasks, required: true
         }]
     })
-
     const response = {
         infoUser,
-        infoProjects, 
-        infoTasks
+        infoProjects
     }
-
     res.json(response)
 }

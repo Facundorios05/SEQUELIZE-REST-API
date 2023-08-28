@@ -4,12 +4,13 @@ const router = Router();
 
 //Se importan los controladores para las rutas
 import { getAllUsers, getUser, createUser, deleteUser, updateUser, userInfo } from '../controllers/user.controllers.js';
+import { userSchema } from '../validator/user.schema.js';
 
 
 //Se definen las rutas y se les concatena su funcionalidad importada del controlador correspondiente
-router.post('/user', createUser);
+router.post('/user', userSchema, createUser);
 router.get('/user', getAllUsers);
-router.get('/user/:id',  getUser);
+router.get('/user/:id', getUser);
 router.put('/user/:id', updateUser);
 router.delete('/user/:id', deleteUser);
 router.get('/user/:id/info', userInfo)

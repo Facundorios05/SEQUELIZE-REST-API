@@ -33,11 +33,11 @@ export const getTask = async (req, res) => {
 export const createTask = async (req, res) => {
 
     try {
-        const { name, done, project_Id } = req.body;
+        const { name, done, project_id } = req.body;
         const newTask = await tasks.create({
             name: name,
             done: done,
-            project_Id: project_Id
+            project_id: project_id
         })
         res.json(newTask)
     } catch (error) {
@@ -49,15 +49,12 @@ export const createTask = async (req, res) => {
 export const updateTask = async (req, res) => {
     try {
         const { id } = req.params;
-        const { name, done, project_Id } = req.body;
-
+        const { name, done, project_id } = req.body;
         const updateTask = await tasks.findByPk(id)
-
         if (!updateTask) {
             return res.status(400).json({ message: "No hay tarea que actualizar" })
         }
-
-        await updateTask.update({ name, done, project_Id })
+        await updateTask.update({ name, done, project_id })
         res.json(updateTask)
     } catch (error) {
         return res.status(500).json({ message: error.message })

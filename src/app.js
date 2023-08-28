@@ -2,6 +2,8 @@
 import express from 'express';
 import "dotenv/config";
 
+import {body, validationResult} from 'express-validator'
+
 //Se importan rutas
 import userRoutes from './routes/user.routes.js';
 import tasksRoutes from './routes/tasks.routes.js';

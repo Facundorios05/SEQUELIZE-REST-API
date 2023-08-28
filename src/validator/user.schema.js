@@ -1,13 +1,17 @@
-import checkSchema from 'express-validator';
+import { checkSchema } from 'express-validator';
 
 export const userSchema = checkSchema({
     username: {
         notEmpty: {
             errorMessage: 'El nombre de usuario es obligatorio'
         },
-    isUsername: {
-        errorMessage: 'El nombre de usuario debe ser valido'
-    }
+        isUsername: {
+            errorMessage: 'El nombre de usuario debe ser valido'
+        },
+        isLength: {
+            errorMessage: 'La contraseña debe tener al menos 8 caracteres',
+            options: { min: 2 }
+        }
     },
     email: {
         notEmpty: {
@@ -23,7 +27,8 @@ export const userSchema = checkSchema({
         },
         isLength: {
             errorMessage: 'La contraseña debe tener al menos 8 caracteres',
-            options: { min: 8}
-        }    
+            options: { min: 8 }
+        }
     }
 })
+

@@ -8,7 +8,7 @@ import { getAllTasks, createTask, updateTask, deleteTask, getTask } from '../con
 router.get('/tasks', getAllTasks)
 router.post('/tasks', createTask)
 router.put('/tasks', updateTask)
-router.delete('/tasks', deleteTask )
+router.delete('/tasks', deleteTask)
 router.get('/tasks', getTask)
 
 export default router;

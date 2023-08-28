@@ -21,12 +21,10 @@ export const projects = sequelize.define('proyectos', {
         type: DataTypes.BOOLEAN,
         defaultValue: false
     }
-    
+
 }, {
     timestamps: false
 })
-
-
 
 //Se crea la relación de Uno (Poryecto) a Muchos (Tareas)
 projects.hasMany(tasks, {
