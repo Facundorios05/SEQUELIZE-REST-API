@@ -5,10 +5,10 @@ const router = Router();
 //Se importan los controladores para las rutas
 import { getAllTasks, createTask, updateTask, deleteTask, getTask } from '../controllers/tasks.controllers.js'
 
-router.get('/tasks', getAllTasks)
-router.post('/tasks', createTask)
-router.put('/tasks', updateTask)
-router.delete('/tasks', deleteTask)
-router.get('/tasks', getTask)
+router.get('/', getAllTasks)
+router.post('/', createTask)
+router.put('/:id', updateTask)
+router.delete('/:id', deleteTask)
+router.get('/:id', getTask)
 
 export default router;

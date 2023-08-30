@@ -2,7 +2,7 @@
 import express from 'express';
 import "dotenv/config";
 
-import {body, validationResult} from 'express-validator'
+
 
 //Se importan rutas
 import userRoutes from './routes/user.routes.js';
@@ -11,7 +11,7 @@ import projectsRoutes from './routes/projects.routes.js';
 
 const app = express()
 
-//Middlewars: funciones que se ejecutan antes de llegar a la ruta.
+
 
 //Permite interpretar los datos que se envian al servidor en formato en json y transformarlo en un req.body.
 app.use(express.json());
@@ -19,10 +19,10 @@ app.use(express.json());
 
 
 
-//Se importan las rutas
-app.use(userRoutes);
-app.use(tasksRoutes);
-app.use(projectsRoutes);
+//Se implementan las rutas
+app.use("/users", userRoutes);
+app.use("/tasks", tasksRoutes);
+app.use("/projects", projectsRoutes);
 
 
 export default app;

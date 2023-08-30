@@ -7,10 +7,10 @@ import { getAllProjects, createProject, updateProject, deleteProject, getProject
 
 
 //Se definen las rutas y se les concatena su funcionalidad importada del controlador correspondiente
-router.get('/projects/:id', getProject);
-router.get('/projects', getAllProjects);
-router.post('/projects', createProject);
-router.put('/projects/:id', updateProject)
-router.delete('/projects/:id', deleteProject)
+router.get('/:id', getProject);
+router.get('/', getAllProjects);
+router.post('/', createProject);
+router.put('/:id', updateProject)
+router.delete('/:id', deleteProject)
 
 export default router;

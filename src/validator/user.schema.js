@@ -4,31 +4,16 @@ export const userSchema = checkSchema({
     username: {
         notEmpty: {
             errorMessage: 'El nombre de usuario es obligatorio'
-        },
-        isUsername: {
-            errorMessage: 'El nombre de usuario debe ser valido'
-        },
-        isLength: {
-            errorMessage: 'La contraseña debe tener al menos 8 caracteres',
-            options: { min: 2 }
         }
     },
     email: {
-        notEmpty: {
-            errorMessage: 'El email es obligatorio'
-        },
-        isEmail: {
-            errorMessage: 'El email debe ser vailido'
-        }
-    },
+        errorMessage: 'La información ingresada no pertenece a ningún correo.',
+        isEmail: true
+      },
     password: {
-        notEmpty: {
-            errorMessage: 'La contraseña es obligatoria'
-        },
         isLength: {
-            errorMessage: 'La contraseña debe tener al menos 8 caracteres',
-            options: { min: 8 }
-        }
-    }
+            options: { min: 8 },
+            errorMessage: 'La contraseña como mínimo debe tener 8 caracteres'
+          }
+}
 })
-
