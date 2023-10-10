@@ -1,4 +1,5 @@
-# facundo_rios-trabajo_practico_1-backend
+# SEQUELIZE REST API
+
 Dentro del directorio del proyecto ejecutar:
 
 ```bash
